@@ -157,6 +157,7 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.opt.conceallevel = 1
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -642,6 +643,12 @@ require('lazy').setup({
             },
           },
         },
+        jdtls = {
+          cmd = {
+            vim.fn.exepath 'jdtls',
+            string.format('--jvm-arg=-javaagent:%s', require('mason-registry').get_package('jdtls'):get_install_path() .. '/lombok.jar'),
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -899,7 +906,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python', 'java', 'sql' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
