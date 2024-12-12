@@ -12,27 +12,15 @@ return {
       require('orgmode').setup {
         org_agenda_files = '~/Yandex.Disk/orgfiles/**/*',
         org_default_notes_file = '~/Yandex.Disk/orgfiles/refile.org',
-        org_capture_templates = {
-          T = {
-            description = 'Todo',
-            template = '** TODO %?\n   SCHEDULED: %^t',
-            target = '~/Yandex.Disk/orgfiles/todo.org',
-            headline = 'TASKS',
-          },
-          I = {
-            description = 'Info',
-            template = '* %?\n %x',
-            target = '~/Yandex.Disc/orgfiles/info.org',
-          },
-        },
+        org_capture_templates = {},
         org_hide_leading_stars = true,
         org_highlight_latex_and_related = 'native',
         org_hide_emphasis_markers = true,
-        org_todo_keywords = { 'TODO(t)', 'WAITING(w)', '|', 'DONE(d)' },
+        org_todo_keywords = { 'TODO(t)', 'WAIT(w)', '|', 'DONE(d)' },
         mappings = {
           org = {
-            org_toggle_checkbox = '<CR>',
-            org_todo = '<C-Space>',
+            -- org_toggle_checkbox = '<CR>',
+            -- org_todo = '<C-Space>',
           },
         },
       }
@@ -44,6 +32,24 @@ return {
       --   ignore_install = { 'org' },
       -- })
     end,
+  },
+  {
+    'mrshmllow/orgmode-babel.nvim',
+    dependencies = {
+      'nvim-orgmode/orgmode',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    cmd = { 'OrgExecute', 'OrgTangle' },
+    opts = {
+      -- by default, none are enabled
+      langs = { 'python', 'lua', 'java', 'bash' },
+
+      -- paths to emacs packages to additionally load
+      load_paths = {},
+    },
+    mappings = {
+      Org_execute = '<C-c><C-c>',
+    },
   },
   {
     'jpalardy/vim-slime',
